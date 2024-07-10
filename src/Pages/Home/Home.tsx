@@ -1,4 +1,5 @@
 import { useGetAllCategoryQuery } from "../../Redux/api/baseApi";
+import Banner from "./Banner";
 
 const Home = () => {
 
@@ -8,7 +9,7 @@ const Home = () => {
 
     return (
         <div>
-            <h1>This is home page</h1>
+            <Banner />
         </div>
     );
 };
