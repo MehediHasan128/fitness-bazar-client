@@ -1,18 +1,24 @@
 import { useGetAllProductsQuery } from "../../Redux/api/baseApi";
+import { TProducts } from "../../Types/types";
+import ProductCard from "./ProductCard";
 
 const Products = () => {
+  const { data } = useGetAllProductsQuery(undefined);
 
-    const {data} = useGetAllProductsQuery(undefined);
+  const products = data?.data;
+  console.log(products);
 
-    const products = data?.data;
+  return (
+    <div className="max-w-[90%] mx-auto p-20">
+      
+      <div className="grid grid-cols-4 gap-5">
+       {
+        products?.map((product: TProducts) => <ProductCard key={product._id} product={product} />)
+       }
+      </div>
 
-    console.log(products);
-
-    return (
-        <div>
-            <h1>This is all products page</h1>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Products;
