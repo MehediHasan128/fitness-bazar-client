@@ -6,7 +6,6 @@ const Products = () => {
   const { data } = useGetAllProductsQuery(undefined);
 
   const products = data?.data;
-  console.log(products);
 
   return (
     <div className="max-w-[90%] mx-auto p-20">

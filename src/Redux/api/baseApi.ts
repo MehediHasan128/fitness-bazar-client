@@ -17,6 +17,12 @@ export const baseApi = createApi({
             method: 'GET',
             body: categorydata
         })
+    }),
+    getProductDetails: builder.query({
+        query: (id) => ({
+            url: `/product/${id}`,
+            method: 'GET'
+        })
     })
    })
 });
@@ -24,5 +30,6 @@ export const baseApi = createApi({
 
 export const {
     useGetAllProductsQuery,
-    useGetAllCategoryQuery
+    useGetAllCategoryQuery,
+    useGetProductDetailsQuery
 } = baseApi;
