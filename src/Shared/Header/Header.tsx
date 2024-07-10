@@ -46,7 +46,9 @@ const Header = () => {
         <li><a>Item 3</a></li>
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <div>
+      <h1 className="text-center text-xl leading-tight"><span className="text-2xl font-bold text-red-600">Fitness</span> <br />Bazar</h1>
+    </div>
   </div>
   <div className="navbar-center hidden lg:flex space-x-10">
       {

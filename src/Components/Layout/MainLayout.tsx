@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import Footer from "../../Shared/Footer/Footer";
 import Header from "../../Shared/Header/Header";
 
@@ -6,7 +7,7 @@ const MainLayout = () => {
     <>
       <Header />
       <div className="h-screen">
-        <h1>This is home page</h1>
+       <Outlet />
       </div>
       <Footer />
     </>
