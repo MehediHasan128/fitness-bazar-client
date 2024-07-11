@@ -4,10 +4,11 @@ import Swal from "sweetalert2";
 
 const AddProductModal = () => {
 
-  const {register, handleSubmit} = useForm();
+  const {register, handleSubmit, reset} = useForm();
   const [createProduct] = useCreateProductMutation();
 
   const handelAddProduct = async (data: FieldValues) => {
+    console.log(data);
     const {name, description, price, quantity, category, imageUrl} = data;
 
     const ProductPrice = Number(price);
@@ -24,6 +25,7 @@ const AddProductModal = () => {
     const res = await createProduct(productData);
 
     if(res.data.statusCode === 200){
+      reset();
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -50,11 +52,11 @@ const AddProductModal = () => {
         <div className="flex gap-5">
         <div className="flex flex-col">
             <label className="font-semibold mb-1">Price:</label>
-            <input {...register('price')} type="number" placeholder="Price" className="bg-slate-100 px-5 py-3 rounded-md" />
+            <input {...register('price')} type="text" placeholder="Price" className="bg-slate-100 px-5 py-3 rounded-md" />
         </div>
         <div className="flex flex-col">
             <label className="font-semibold mb-1">Quantity:</label>
-            <input {...register('quantity')} type="number" placeholder="Quantity" className="bg-slate-100 px-5 py-3 rounded-md" />
+            <input {...register('quantity')} type="text" placeholder="Quantity" className="bg-slate-100 px-5 py-3 rounded-md" />
         </div>
         </div>
 

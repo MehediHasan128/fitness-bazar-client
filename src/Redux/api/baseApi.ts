@@ -5,8 +5,8 @@ export const baseApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/v1/' }),
    endpoints: (builder) => ({
     getAllProducts: builder.query({
-        query: () => ({
-            url: '/product',
+        query: (searchItem) => ({
+            url: `/product?searchTerm=${searchItem}`,
             method: 'GET',
         })
     }),

@@ -8,3 +8,9 @@ export type TProducts = {
     categoryId: string;
     category: string;
 }
+
+export type TCategory = {
+    _id: string
+    categoryName: string;
+    categoryImage: string;
+}
