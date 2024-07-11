@@ -52,7 +52,7 @@ const ProductTable = ({product, handelDeleteProduct}) => {
             </svg>
           </button>
           <button
-            onClick={() => handelDeleteProduct()}
+            onClick={() => handelDeleteProduct(_id)}
             className="bg-red-200 hover:bg-red-500 hover:scale-105 hover:text-white duration-700 p-2 rounded-md"
           >
             <svg

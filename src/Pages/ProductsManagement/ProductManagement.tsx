@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { useGetAllProductsQuery } from "../../Redux/api/baseApi";
+import { useDeleteProductMutation, useGetAllProductsQuery } from "../../Redux/api/baseApi";
 import { TProducts } from "../../Types/types";
 import ProductTable from "./ProductTable";
 import AddProductModal from "./AddProductModal";
@@ -9,7 +9,10 @@ const ProductManagement = () => {
 
   const products = data?.data;
 
-  const handelDeleteProduct = () => {
+  const [deleteProduct] = useDeleteProductMutation(undefined);
+  
+  const handelDeleteProduct = (id: string) => {
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -20,6 +23,9 @@ const ProductManagement = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+
+        deleteProduct(id);
+
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
