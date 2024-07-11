@@ -5,23 +5,28 @@ export const baseApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/v1/' }),
    endpoints: (builder) => ({
     getAllProducts: builder.query({
-        query: (productData) => ({
+        query: () => ({
             url: '/product',
             method: 'GET',
-            body: productData
         })
     }),
     getAllCategory: builder.query({
-        query: (categorydata) => ({
+        query: () => ({
             url: '/category',
             method: 'GET',
-            body: categorydata
         })
     }),
     getProductDetails: builder.query({
         query: (id) => ({
             url: `/product/${id}`,
             method: 'GET'
+        })
+    }),
+    createProduct: builder.mutation({
+        query: (productData) => ({
+            url: '/create-product',
+            method: 'POST',
+            body: productData
         })
     })
    })
@@ -31,5 +36,6 @@ export const baseApi = createApi({
 export const {
     useGetAllProductsQuery,
     useGetAllCategoryQuery,
-    useGetProductDetailsQuery
+    useGetProductDetailsQuery,
+    useCreateProductMutation
 } = baseApi;

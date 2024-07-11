@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  const { name, images, price, _id } = product;
+  const { name, imageUrl, price, _id } = product;
 
   return (
     <div className="card bg-base-100 w-96 shadow-xl">
       <figure>
-        <img src={images} alt="Shoes" />
+        <img src={imageUrl} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{name}</h2>

@@ -1,15 +1,11 @@
-import { useGetAllCategoryQuery } from "../../Redux/api/baseApi";
 import Banner from "./Banner";
+import Category from "./Category";
 
 const Home = () => {
-
-    const {data} = useGetAllCategoryQuery(undefined);
-
-    const categories = data?.data;
-
     return (
         <div>
             <Banner />
+            <Category />
         </div>
     );
 };

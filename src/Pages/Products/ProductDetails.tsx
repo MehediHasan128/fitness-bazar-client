@@ -10,8 +10,8 @@ const ProductDetails = () => {
   return (
     <div className="max-w-[90%] mx-auto min-h-screen my-10">
       <div className="flex">
-        <div className="w-[50%]">
-          <img src={product?.images} alt="" />
+        <div className="w-[50%] p-16">
+          <img src={product?.imageUrl} alt="" />
         </div>
         <div className="w-[50%] my-10">
           <Link to="/products">
