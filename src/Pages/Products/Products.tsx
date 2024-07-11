@@ -6,7 +6,6 @@ import { useState } from "react";
 
 const Products = () => {
   const [searchValue, setSearchValue] = useState('');
-  console.log(searchValue);
   const { data } = useGetAllProductsQuery(searchValue);
 
   const products = data?.data;
@@ -32,11 +31,7 @@ const Products = () => {
           </form>
         </div>
 
-        <div>
-          <select>
-            <option value="">Category</option>
-          </select>
-        </div>
+        
       </div>
 
       <div className="grid grid-cols-4 gap-5">
