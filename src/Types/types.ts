@@ -14,3 +14,12 @@ export type TCategory = {
     categoryName: string;
     categoryImage: string;
 }
+
+export type TCartProduct = {
+    _id: string;
+    productId: string;
+    productImage: string;
+    productName: string;
+    productPrice: number;
+    productQuantity: number;
+}
