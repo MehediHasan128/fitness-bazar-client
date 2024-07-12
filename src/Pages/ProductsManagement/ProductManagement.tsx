@@ -5,7 +5,7 @@ import ProductTable from "./ProductTable";
 import AddProductModal from "./AddProductModal";
 
 const ProductManagement = () => {
-  const { data } = useGetAllProductsQuery(undefined);
+  const { data } = useGetAllProductsQuery('');
 
   const products = data?.data;
 
@@ -39,7 +39,10 @@ const ProductManagement = () => {
     <div className="max-w-[80%] mx-auto my-20">
       <div className="mb-10">
         <button
-          onClick={() => document.getElementById("my_modal_1").showModal()}
+          onClick={() => {
+            const modal = document.getElementById("my_modal_1") as HTMLDialogElement | null;
+            modal?.showModal()
+          }}
           className="flex items-center gap-2 text-xl font-semibold bg-slate-100 px-5 py-3 rounded-md border shadow"
         >
           <svg

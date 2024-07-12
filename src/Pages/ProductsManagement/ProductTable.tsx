@@ -1,4 +1,11 @@
-const ProductTable = ({product, handelDeleteProduct}) => {
+import { TProducts } from "../../Types/types";
+
+type TProps = {
+  product: TProducts,
+  handelDeleteProduct: Function
+}
+
+const ProductTable = ({product, handelDeleteProduct}: TProps) => {
 
     const {name, price, imageUrl, category, quantity, description, _id} = product;
 
@@ -33,7 +40,13 @@ const ProductTable = ({product, handelDeleteProduct}) => {
       <th className="flex justify-center">
         <div className="flex gap-3">
           <button
-            onClick={() => document.getElementById("my_modal_5").showModal()}
+            // onClick={() => document.getElementById("my_modal_5")!.showModal()}
+
+            onClick={() => {
+              const modal = document.getElementById("my_modal_5") as HTMLDialogElement | null;
+              modal?.showModal()
+            }}
+
             className="bg-green-200 hover:bg-green-600 hover:scale-105 hover:text-white duration-700 p-2 rounded-md"
           >
             <svg

@@ -1,4 +1,10 @@
-const CategoryCard = ({category}) => {
+import { TCategory } from "../../Types/types";
+
+type TProps = {
+  category: TCategory
+}
+
+const CategoryCard = ({category}: TProps) => {
 
     const {categoryName, categoryImage} = category;
 

@@ -1,11 +1,58 @@
 import { Link } from "react-router-dom";
-import { useGetProductDetailsQuery } from "../../Redux/api/baseApi";
+import { useAddToCartMutation, useGetProductDetailsQuery } from "../../Redux/api/baseApi";
+import { useState } from "react";
+import { TProducts } from "../../Types/types";
+import Swal from "sweetalert2";
 
 const ProductDetails = () => {
   const currentURL = window.location.href;
   const parts = currentURL.split("/");
-  const { data } = useGetProductDetailsQuery(parts[4]);
+  const { data } = useGetProductDetailsQuery(parts[parts.length - 1]);
   const product = data?.data;
+
+  const [quantity, setQuantity] = useState(0);
+
+  const [productData, setProductData] = useState({});
+
+  const [addToCart] = useAddToCartMutation({})
+
+  const handelAddToCart= async (product: TProducts) => {
+    if(quantity !== 0){
+      const cartProduct = {
+        productId: product?._id,
+        productName: product?.name,
+        productImage: product?.imageUrl,
+        productPrice: product?.price,
+        productQuantity: quantity,
+      }
+      
+      const res = await addToCart(cartProduct);
+
+      if(res.data.success === true){
+        Swal.fire({
+          icon: "success",
+          title: "Product add to cart",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }else{
+        Swal.fire({
+          icon: "warning",
+          title: `${res.data.message}`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    }else{
+      Swal.fire({
+        icon: "warning",
+        title: "Please select product quantity",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+
+  };
 
   return (
     <div className="max-w-[90%] mx-auto min-h-screen my-10">
@@ -95,13 +142,25 @@ const ProductDetails = () => {
               <h1 className="text-xl font-semibold">Select Quantity</h1>
 
               <div className="flex items-center border w-fit rounded mt-3 font-medium">
-                <p className=" cursor-pointer px-6 py-2 border-r">-</p>
-                <p className=" cursor-pointer px-6 py-2">0</p>
-                <p className=" cursor-pointer px-6 py-2 border-l">+</p>
+                <button
+                  onClick={() =>
+                    quantity !== 0 ? setQuantity(quantity - 1) : quantity
+                  }
+                  className=" cursor-pointer px-6 py-2 border-r"
+                >
+                  -
+                </button>
+                <p className=" cursor-pointer px-6 py-2">{quantity}</p>
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className=" cursor-pointer px-6 py-2 border-l"
+                >
+                  +
+                </button>
               </div>
             </div>
 
-            <button className="mt-12 flex items-center bg-blue-400 px-6 py-2 rounded-md gap-2 font-semibold text-white hover:bg-blue-700 duration-700">
+            <button onClick={() => handelAddToCart(product)} className="mt-12 flex items-center bg-blue-400 px-6 py-2 rounded-md gap-2 font-semibold text-white hover:bg-blue-700 duration-700">
               Add to cart
               <svg
                 xmlns="http://www.w3.org/2000/svg"

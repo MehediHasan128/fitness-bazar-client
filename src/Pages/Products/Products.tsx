@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useGetAllProductsQuery } from "../../Redux/api/baseApi";
 import { TProducts } from "../../Types/types";
 import ProductCard from "./ProductCard";
@@ -10,9 +10,9 @@ const Products = () => {
 
   const products = data?.data;
 
-  const {register, handleSubmit, reset} = useForm();
+  const {register, handleSubmit} = useForm();
 
-  const handelSearch = (data) => {
+  const handelSearch = (data: FieldValues) => {
     const {searchTerm} = data;
     setSearchValue(searchTerm);
   }
